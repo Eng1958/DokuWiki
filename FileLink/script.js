@@ -13,9 +13,6 @@
 function FileLink() {
 	console.log("FileLink");
 
-// 	jQuery("div.dokuwiki div").addClass("blue");
-//     $this = jQuery(this);
-//     console.log($this);
 
 	jQuery("a.urlextern").each(function(){
 		$this = jQuery(this);
@@ -25,6 +22,7 @@ function FileLink() {
 		filename = filename.replace(/^.*[\\\/]/, '');
 		console.log(filename);
 		$this.html(filename);
+		// add class-id
 		jQuery("a.urlextern").addClass("filelink");
 	});
 
