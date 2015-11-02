@@ -3,6 +3,12 @@
   * 
   * @author Dieter Engemann <dieter@engemann.me>
   * 
+  * Add this Script into ...\dokuwiki\htdocs\lib\plugins\*
+  * 
+  * Author:	D. Engemann
+  * Date:	02.11.2015
+  * Version	1.0
+  *     
   */
 function FileLink() {
 	console.log("FileLink");
