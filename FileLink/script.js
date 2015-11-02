@@ -18,13 +18,13 @@ function FileLink() {
 //     console.log($this);
 
 	jQuery("a.urlextern").each(function(){
-    	$this = jQuery(this);
-    	console.log($this);
-    	console.log($this.text());
+		$this = jQuery(this);
+		console.log($this);
+		console.log($this.text());
 		filename = $this.text();
-    	filename = filename.replace(/^.*[\\\/]/, '');
-    	console.log(filename);
-    	$this.html(filename);
+		filename = filename.replace(/^.*[\\\/]/, '');
+		console.log(filename);
+		$this.html(filename);
 		jQuery("a.urlextern").addClass("filelink");
 	});
 
