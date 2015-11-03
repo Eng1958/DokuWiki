@@ -29,11 +29,14 @@ function FileLink() {
 	console.log("*** End FileLink");
 }
 jQuery(FileLink);
+	
 
 function SystemInfo() {
-	
-	console.log("*** SystemInfo");
 
+	console.log("SystemInfo");
+        console.log(navigator.platform);
+        console.log(document.title);
+jQuery("p").after("Some appended text."); 
+	console.log("*** End SystemInfo");
 }
 jQuery(SystemInfo);
-
