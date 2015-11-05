@@ -7,8 +7,10 @@
   * 
   * @param {function} fn optional callback to run after hiding
   *
-  * Date:	02.11.2015
-  * Version	1.0
+  * @Date:	02.11.2015
+  * Version	1.0		02.11.2015	Initial Version
+  * Version	1.1		05.11.2015	get local OS-System an show it on the page
+  *   
   *     
   */
 function FileLink() {
@@ -30,7 +32,6 @@ function FileLink() {
 	console.log("*** End FileLink");
 }
 jQuery(FileLink);
-<<<<<<< HEAD
 
 /**
  *
@@ -42,7 +43,7 @@ function SystemInfo() {
 	
 	var page = document.title;
 	console.log(page);
-    var res = page.substring(0, 5); 
+	var res = page.substring(0, 5); 
 	console.log(page + "/Result:" + res);
 	if (res == "Start") {
 		var platform = navigator.platform;
