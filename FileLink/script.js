@@ -5,7 +5,8 @@
   * 
   * Add this Script into ...\dokuwiki\htdocs\lib\plugins\*
   * 
-  * Author:	D. Engemann
+  * @param {function} fn optional callback to run after hiding
+  *
   * Date:	02.11.2015
   * Version	1.0
   *     
@@ -29,3 +30,28 @@ function FileLink() {
 	console.log("*** End FileLink");
 }
 jQuery(FileLink);
+
+/**
+ *
+ **/
+function SystemInfo() {
+
+    console.log("*** Start SystemInfo()");
+//    jQuery("h1").after("Some appended text to show if script ist running."); 
+	
+	var page = document.title;
+	console.log(page);
+    var res = page.substring(0, 5); 
+	console.log(page + "/Result:" + res);
+	if (res == "Start") {
+		var platform = navigator.platform;
+		console.log(platform);
+		console.log(navigator.userAgent);
+//    	jQuery("h2").after("Some appended text to show if script ist running."); 
+		var txt2 = jQuery("<p></p>").text("Local OS-System: ");   // Create with jQuery
+		jQuery("p").append(txt2);         // Append the new elements 
+		jQuery("p").append(platform);         // Append the new elements 
+	}
+	console.log("*** End SystemInfo()");
+}
+jQuery(SystemInfo);
