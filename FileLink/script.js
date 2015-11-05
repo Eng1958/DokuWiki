@@ -30,6 +30,7 @@ function FileLink() {
 	console.log("*** End FileLink");
 }
 jQuery(FileLink);
+<<<<<<< HEAD
 
 /**
  *
