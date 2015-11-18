@@ -11,6 +11,7 @@
   * Version	1.0		02.11.2015	Initial Version
   * Version	1.1		05.11.2015	get local OS-System an show it on the page
   * Version	1.2		13.11.2015	FileLink: Correction of short names
+  * Version	1.3		17.11.2015	FileLink: only for "FILE://" - protocol
   *
   */
   
@@ -19,21 +20,25 @@
  *
 **/
 function FileLink() {
-	console.log("FileLink");
+	console.log("*** Start FileLink");
 
 	jQuery("a.urlextern").each(function(){
 		$this = jQuery(this);
 		console.log($this);
 		console.log($this.text());
 		filename = $this.text();
-		filename = filename.replace(/^.*[\\\/]/, '');
-		console.log(filename);
-		console.log(filename.length);
-		if (filename.length != 0) {
-			$this.html(filename);
+		/* Shorten only file:// - links	*/
+		console.log("protocol:" + filename.substring(0,5));
+		if (filename.substring(0,5) == "file:") {
+			filename = filename.replace(/^.*[\\\/]/, '');
+			console.log(filename);
+			console.log(filename.length);
+			if (filename.length != 0) {
+				$this.html(filename);
+			}
+			// add class-id
+			jQuery("a.urlextern").addClass("filelink");
 		}
-		// add class-id
-		jQuery("a.urlextern").addClass("filelink");
 	});
 
 	console.log("*** End FileLink");
