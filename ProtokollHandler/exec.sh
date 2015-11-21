@@ -1,26 +1,25 @@
 #!/bin/bash
+file=file:///home/dieter/Musik/Musik-Wiki/Lehrbuecher/JameyAbersold/Volume06-All-Bird/02-NowsTheTime-BilliesBounce/02-NowsTheTime-BilliesBounce.mp3 
+
 protocol=$(echo $1 | cut -d : -f 1)
 address=$(echo $1 | cut -d / -f 3)
 user=$(echo $address | grep @ | cut -d @ -f 1)
 port=$(echo $address | grep : | cut -d : -f 2)
 host=$(echo $address | cut -d @ -f 2 | cut -d : -f 1)
 
-date >> /tmp/tmp.log
-echo "Hello World" >> /tmp/tmp.log
-echo $1 >> /tmp/tmp.log
-echo $protocol >> /tmp/tmp.log
+extension=$(echo $file | cut -d . -f 2)
+filename=$(echo $file | cut -d : -f 2)
+
+echo $extension
+echo $filename
 
 echo $1
 sleep 2
-clementine $1 &
-
-## rosegarden &
-
-return
+clementine $filename &
 
 
-case $protocol in
-ssh)
+case $extension in
+mp3)
 connectstring=$(echo "$([ -z $user ] || echo "$user@")$host$([ -z $port ] || echo "-p $port")")
 gnome-terminal --window -e "$protocol $connectstring"
 ;;
