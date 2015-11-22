@@ -19,6 +19,8 @@ filename=$(echo $file | cut -d : -f 2)
 echo "Extension: "$extension
 echo "Filename: "$filename
 
+# Filename auf exist pruefen
+# Pruefen, ob extension vorhanden ist 
 zenity --error --text "$filename"
 
 desktopFile=$(grep $extension /usr/share/applications/defaults.list | cut -d = -f 2 | uniq | cut -d . -f 1)
