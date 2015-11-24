@@ -4,6 +4,7 @@
 #
 # 21.11.2015	v0.1	Rudimentaeres Script als Test
 # 22.11.2015	v0.2	Output in Logfile
+# 24.11.2015	v0.3 	zenity-Messages and run application
 #-----------------------------------------------------
 
 logfile=/tmp/exec.log 
@@ -21,10 +22,21 @@ echo "Filename: "$filename
 
 # Filename auf exist pruefen
 # Pruefen, ob extension vorhanden ist 
-zenity --error --text "$filename"
 
-desktopFile=$(grep $extension /usr/share/applications/defaults.list | cut -d = -f 2 | uniq | cut -d . -f 1)
-echo $desktopFile
+if [ -e "$filename" ] 
+then
+	zenity --info --text=$filename
+else
+	zenity --error --text="$filename doesn't exist"
+	exit
+fi
 
-$desktopFile $filename &
+case $extension in
+	mp3)
+	echo $extension
+	clementine --verbose $filename &
+;;
+   martin)    print $declination;;
+   *)         print "Wrong name...";;
+esac
 
