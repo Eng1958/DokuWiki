@@ -1,0 +1,46 @@
+div.dokuwiki .chords {
+  color: #000080;
+  font-weight: bold;
+}
+
+
+/*und die Formatierung für die Link-Klasse "exec"*/
+a.exec:link {
+  color:#00FF00;
+}
+a.exec:visited {
+  color:#00FF00;
+}
+a.exec:hover {
+  color:#FF0000;
+  font-weight:bold;
+}
+
+/* links */
+.dokuwiki a.exec:link,
+.dokuwiki a.exec:visited {
+  color: red;
+  text-decoration: none;
+}
+.dokuwiki a.exec:hover,
+.dokuwiki a.exec:active {
+  color: __text__;
+  text-decoration: underline;
+}
+
+
+/* not existing wikipage */
+/**
+.dokuwiki a.wikilink2 {
+    text-decoration: none;
+}
+.dokuwiki a.wikilink2:link,
+.dokuwiki a.wikilink2:visited {
+    border-bottom: 1px dashed;
+}
+.dokuwiki a.wikilink2:hover,
+.dokuwiki a.wikilink2:active,
+.dokuwiki a.wikilink2:focus {
+    border-bottom-width: 0;
+}
+**/

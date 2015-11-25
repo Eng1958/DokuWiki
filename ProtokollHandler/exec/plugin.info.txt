@@ -1,0 +1,8 @@
+base   exec
+author Dieter Engemann
+email  dieter.engemann@gmail.com
+date   2015-11-25
+name   Exec
+desc   Runs external files from browser. Creates a <exec>filename</exec>).
+url    https://www.dokuwiki.org/plugin:exec
+
