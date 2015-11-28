@@ -6,8 +6,8 @@
 # 22.11.2015	v0.2	Output in Logfile
 # 24.11.2015	v0.3 	zenity-Messages and run application
 #-----------------------------------------------------
-
-logfile=/tmp/exec.log 
+CMD=${0##*/} 
+logfile=/tmp/$CMD.log 
 exec > $logfile 
 
 date
@@ -33,10 +33,15 @@ fi
 
 case $extension in
 	mp3)
-	echo $extension
-	clementine --verbose $filename &
+		echo $extension
+		clementine --verbose $filename &
 ;;
-   martin)    print $declination;;
-   *)         print "Wrong name...";;
+	pdf)
+		clementine --verbose $filename &
+;;
+	mscz)
+		musescore $filename & ;;
+   *)  
+       print "Wrong name...";;
 esac
 

@@ -1,0 +1,10 @@
+# Can ignore specific files
+ProtokollHandler/test.sh
+
+# Use wildcards as well
+*~
+*.tmp
+
+# Can also ignore all directories and files in a directory.
+tmp/**/* 
+
