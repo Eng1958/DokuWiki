@@ -1,4 +1,5 @@
 #!/bin/bash
+# vim: ts=4
 #-----------------------------------------------------
 # Execution-Script als Protokoll-Handler
 #
@@ -25,17 +26,24 @@ echo "Filename: "$filename
 
 if [ -e "$filename" ] 
 then
-	zenity --info --text=$filename
+	zenity --info --text=$filename --timeout=3
 else
 	zenity --error --text="$filename doesn't exist"
 	exit
 fi
+
+application=$(grep -i $extension exec.cfg | cut -d : -f 2)
+echo "Application: $application"
 
 case $extension in
 	mp3)
 	echo $extension
 	clementine --verbose $filename &
 ;;
+	mscz)
+		e="musescore $extension"	
+		echo $e
+		musescore $filename & ;;
    martin)    print $declination;;
    *)         print "Wrong name...";;
 esac
