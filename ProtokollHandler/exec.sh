@@ -26,9 +26,9 @@ echo "Filename: "$filename
 
 if [ -e "$filename" ] 
 then
-	zenity --info --text=$filename --timeout=3
+	zenity --info --title="Execute" --width=1 --height=1 --text=$filename --timeout=3
 else
-	zenity --error --text="$filename doesn't exist"
+	zenity --error --title="Execute" --width=1 --height=1 --text="$filename doesn't exist"
 	exit
 fi
 
