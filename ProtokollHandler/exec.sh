@@ -1,5 +1,5 @@
 #!/bin/bash
-# vim: ts=4
+#vim: tabstop=4
 #-----------------------------------------------------
 # Execution-Script als Protokoll-Handler
 #
@@ -16,6 +16,7 @@ file=$1
 echo $file
 
 extension=$(echo $file | cut -d . -f 2)
+extension="${extension,,}"	# lower case
 filename=$(echo $file | cut -d : -f 2)
 
 echo "Extension: "$extension
@@ -38,14 +39,17 @@ echo "Application: $application"
 case $extension in
 	mp3)
 		echo $extension
-		clementine --verbose $filename &
-;;
+		clementine --verbose $filename & ;;
 	pdf)
-		clementine --verbose $filename &
-;;
+		clementine --verbose $filename & ;;
 	mscz)
+		# Musescore 		
 		musescore $filename & ;;
+	mg4 | sgu)	
+		# Biab-Files; open with Wine
+		echo $extension
+		wine "c:\\bb\\bbw.exe" $filename & ;;
    *)  
-       print "Wrong name...";;
+       print "Wrong extension";;
 esac
 
