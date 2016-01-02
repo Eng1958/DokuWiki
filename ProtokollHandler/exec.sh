@@ -1,14 +1,15 @@
 #!/bin/bash
-#vim: tabstop=4
+# vim: tabstop=4
 #----------------------------------------------------------------------------
 # Execution-Script als Protokoll-Handler
+#
+# Author:	Dieter Engemann	dieter@engemann.me
 #
 # 21.11.2015	v0.1	Rudimentaeres Script als Test
 # 22.11.2015	v0.2	Output in Logfile
 # 24.11.2015	v0.3 	zenity-Messages and run application
+# 02.01.2016	v0.4 	run default application with xdg-open
 #
-# ToDo:	
-#	1. Verzeichnis feststellen und mit nautilus <Verzeichnis> aufrufen		
 #
 #----------------------------------------------------------------------------
 CMD=${0##*/} 
@@ -29,7 +30,8 @@ then
 	# call nautilus with directory as argument; repplace
 	# shell with exec command
 	echo "$filename is a directory"
-	exec nautilus --new-window $filename
+	### exec nautilus --new-window $filename
+	exec xdg-pen $filename
 	exit
 fi
 
@@ -50,6 +52,7 @@ extension="${extension,,}"	# lower case
 			zenity --error --title="Execute" --width=800 --height=1 --text="$filename doesn't exist"
 			exit
 		fi
+exec xdg-open $filename
 
 	application=$(grep -i $extension exec.cfg | cut -d : -f 2)
 	echo "Application: $application"
