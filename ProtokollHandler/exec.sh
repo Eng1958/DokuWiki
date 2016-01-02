@@ -26,21 +26,22 @@ filename=$(echo $file | cut -d : -f 2)
 # check if argument is a directory
 if [ -d $filename ] 
 then
-	# call nautilus with directory as argument
+	# call nautilus with directory as argument; repplace
+	# shell with exec command
 	echo "$filename is a directory"
-	nautilus --new-window $filename &
-	sleep 1
-	echo "$filename is a directory"
-else
+	exec nautilus --new-window $filename
+	exit
+fi
 
-	extension=$(echo $file | cut -d . -f 2)
-	extension="${extension,,}"	# lower case
+# check filename and extension 
+extension=$(echo $file | cut -d . -f 2)
+extension="${extension,,}"	# lower case
 
 	echo "Extension: "$extension
 	echo "Filename: "$filename
 
-		# Filename auf exist pruefen
-		# Pruefen, ob extension vorhanden ist 
+	# Filename auf exist pruefen
+	# Pruefen, ob extension vorhanden ist 
 
 		if [ -e "$filename" ] 
 		then
@@ -50,25 +51,22 @@ else
 			exit
 		fi
 
-		application=$(grep -i $extension exec.cfg | cut -d : -f 2)
-		echo "Application: $application"
+	application=$(grep -i $extension exec.cfg | cut -d : -f 2)
+	echo "Application: $application"
 
-		case $extension in
-			mp3)
-				echo $extension
-				clementine --verbose $filename & ;;
-			pdf)
-				clementine --verbose $filename & ;;
-			mscz)
-		# Musescore 		
-		musescore $filename & ;;
-			mg4 | sgu)	
+case $extension in
+	mp3)
+			echo $extension
+			exec clementine --verbose $filename ;;
+	pdf)
+			exec evince $filename;;
+	mscz)
+			# Musescore 		
+			musescore $filename & ;;
+	mg4 | sgu)	
 				# Biab-Files; open with Wine
 				echo $extension
 				wine "c:\\bb\\bbw.exe" $filename & ;;
-			*)  print "Wrong extension"
-				zenity --error --title="Execute" --width=800 --height=1 --text="$filename Unknown extension ($extension)";;
-
-		esac
-fi
-
+	*)  print "Wrong extension"
+		zenity --error --title="Execute" --width=800 --height=1 --text="$filename Wrong or undefined extension ($extension)";;
+esac
