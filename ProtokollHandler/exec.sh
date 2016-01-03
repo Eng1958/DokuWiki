@@ -31,7 +31,7 @@ then
 	# shell with exec command
 	echo "$filename is a directory"
 	### exec nautilus --new-window $filename
-	exec xdg-pen $filename
+	exec xdg-open $filename
 	exit
 fi
 
@@ -39,30 +39,32 @@ fi
 extension=$(echo $file | cut -d . -f 2)
 extension="${extension,,}"	# lower case
 
-	echo "Extension: "$extension
-	echo "Filename: "$filename
+echo "Extension: "$extension
+echo "Filename: "$filename
 
-	# Filename auf exist pruefen
-	# Pruefen, ob extension vorhanden ist 
+# Filename auf exist pruefen
+# Pruefen, ob extension vorhanden ist 
 
-		if [ -e "$filename" ] 
-		then
-			zenity --info --title="Execute" --width=800 --height=1 --text=$filename --timeout=3
-		else
-			zenity --error --title="Execute" --width=800 --height=1 --text="$filename doesn't exist"
-			exit
-		fi
+if [ -e "$filename" ] 
+then
+	## zenity --info --title="Execute" --width=800 --height=1 --text=$filename --timeout=3
+	echo ""
+else
+	zenity --error --title="Execute" --width=800 --height=1 --text="$filename doesn't exist"
+	exit
+fi
+
 exec xdg-open $filename
 
-	application=$(grep -i $extension exec.cfg | cut -d : -f 2)
-	echo "Application: $application"
+##application=$(grep -i $extension exec.cfg | cut -d : -f 2)
+##echo "Application: $application"
 
 case $extension in
 	mp3)
 			echo $extension
 			exec clementine --verbose $filename ;;
 	pdf)
-			exec evince $filename;;
+		exec evince $filename;;
 	mscz)
 			# Musescore 		
 			musescore $filename & ;;
