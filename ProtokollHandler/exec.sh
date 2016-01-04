@@ -9,6 +9,7 @@
 # 22.11.2015	v0.2	Output in Logfile
 # 24.11.2015	v0.3 	zenity-Messages and run application
 # 02.01.2016	v0.4 	run default application with xdg-open
+# 04.01.2016	v.05	comment unused lines/code
 #
 #
 #----------------------------------------------------------------------------
@@ -32,7 +33,7 @@ then
 	echo "$filename is a directory"
 	### exec nautilus --new-window $filename
 	exec xdg-open $filename
-	exit
+	## exit
 fi
 
 # check filename and extension 
@@ -59,19 +60,19 @@ exec xdg-open $filename
 ##application=$(grep -i $extension exec.cfg | cut -d : -f 2)
 ##echo "Application: $application"
 
-case $extension in
-	mp3)
-			echo $extension
-			exec clementine --verbose $filename ;;
-	pdf)
-		exec evince $filename;;
-	mscz)
-			# Musescore 		
-			musescore $filename & ;;
-	mg4 | sgu)	
-				# Biab-Files; open with Wine
-				echo $extension
-				wine "c:\\bb\\bbw.exe" $filename & ;;
-	*)  print "Wrong extension"
-		zenity --error --title="Execute" --width=800 --height=1 --text="$filename Wrong or undefined extension ($extension)";;
-esac
+##case $extension in
+##	mp3)
+##			echo $extension
+##			exec clementine --verbose $filename ;;
+##	pdf)
+##		exec evince $filename;;
+##	mscz)
+##			# Musescore 		
+##			musescore $filename & ;;
+##	mg4 | sgu)	
+##				# Biab-Files; open with Wine
+##				echo $extension
+##				wine "c:\\bb\\bbw.exe" $filename & ;;
+##	*)  print "Wrong extension"
+##		zenity --error --title="Execute" --width=800 --height=1 --text="$filename Wrong or undefined extension ($extension)";;
+##esac
