@@ -10,8 +10,13 @@
 # 24.11.2015	v0.3 	zenity-Messages and run application
 # 02.01.2016	v0.4 	run default application with xdg-open
 # 04.01.2016	v.05	comment unused lines/code
+# 05.01.2016	v.06	delete unused lines/code
 #
-#
+# Description: This script is called from a so called protocoll-handler
+# inside a web-browser like firefox. The script ist called with an argument
+# "exec:<filename>" where filename can be the name of a directory or the
+# name of a local file. The local file is opened with the default application
+# a directoy is opened with the default filemanager.
 #----------------------------------------------------------------------------
 CMD=${0##*/} 
 logfile=/tmp/$CMD.log 
@@ -28,27 +33,16 @@ filename=$(echo $file | cut -d : -f 2)
 # check if argument is a directory
 if [ -d $filename ] 
 then
-	# call nautilus with directory as argument; repplace
-	# shell with exec command
+	# call default filemanager with directory as argument
 	echo "$filename is a directory"
-	### exec nautilus --new-window $filename
 	exec xdg-open $filename
-	## exit
 fi
 
-# check filename and extension 
-extension=$(echo $file | cut -d . -f 2)
-extension="${extension,,}"	# lower case
-
-echo "Extension: "$extension
+# check if filename exists
 echo "Filename: "$filename
-
-# Filename auf exist pruefen
-# Pruefen, ob extension vorhanden ist 
 
 if [ -e "$filename" ] 
 then
-	## zenity --info --title="Execute" --width=800 --height=1 --text=$filename --timeout=3
 	echo ""
 else
 	zenity --error --title="Execute" --width=800 --height=1 --text="$filename doesn't exist"
@@ -56,23 +50,3 @@ else
 fi
 
 exec xdg-open $filename
-
-##application=$(grep -i $extension exec.cfg | cut -d : -f 2)
-##echo "Application: $application"
-
-##case $extension in
-##	mp3)
-##			echo $extension
-##			exec clementine --verbose $filename ;;
-##	pdf)
-##		exec evince $filename;;
-##	mscz)
-##			# Musescore 		
-##			musescore $filename & ;;
-##	mg4 | sgu)	
-##				# Biab-Files; open with Wine
-##				echo $extension
-##				wine "c:\\bb\\bbw.exe" $filename & ;;
-##	*)  print "Wrong extension"
-##		zenity --error --title="Execute" --width=800 --height=1 --text="$filename Wrong or undefined extension ($extension)";;
-##esac
