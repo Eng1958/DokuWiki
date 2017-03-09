@@ -19,6 +19,7 @@
     24.01.2017  Version 1.0     First version
     24.02.2017  Version 1.1     Using Macros for directories
     28.02.2017  Version 1.2     Some enhancements
+    09.03.2017  Version 1.3     More error messages
 
 """
 import os
@@ -29,8 +30,9 @@ import re
 import subprocess
 import tkinter as tk
 from tkinter import messagebox
+import pypkg
 
-VERSION = 'v1.2 (28.02.2017)'
+VERSION = 'v1.3 (09.03.2017)'
 MACROFILE = '~/.exec/macro.cfg'
 
 def set_logfile(script_name):
@@ -89,6 +91,14 @@ def substitute_macro(file, macro_dict):
     print(newfile)
     return newfile
 
+def error_message(message):
+    """
+
+    """
+
+    print(message)
+    messagebox.showerror("Error", message)
+
 def main():
     """
         Main-Function
@@ -96,6 +106,7 @@ def main():
 
     print = set_logfile(sys.argv[0])
 
+    print('Version:' + pypkg.__version__)
     print('Name of the script: ' + sys.argv[0])
     print('Number of arguments: ' + str(len(sys.argv)))
     print('The arguments are: '  + str(sys.argv))
@@ -126,7 +137,9 @@ def main():
     elif os.path.isfile(filename):
         # run default application for filename
         print('Start application for ' + filename)
-        cmd = 'xdg-open ' + filename
+
+        # mask filename to avoid error with special characters in filename
+        cmd = 'xdg-open ' + '\"' + filename + '\"'
         subprocess.call(cmd, shell=True)
     else:
         # Error: No directory or file
@@ -136,8 +149,7 @@ def main():
         root.withdraw()
 
         message = filename + ' not found'
-        print(message)
-        messagebox.showerror("Error", message)
+        error_message(message)
 
 
 if __name__ == '__main__':
