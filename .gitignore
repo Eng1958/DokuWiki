@@ -8,3 +8,10 @@ ProtokollHandler/test.sh
 # Can also ignore all directories and files in a directory.
 tmp/**/* 
 
+### Python ###
+*.py[cod]
+
+# packages
+__pycache__
+
+

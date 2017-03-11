@@ -31,6 +31,7 @@ import subprocess
 import tkinter as tk
 from tkinter import messagebox
 import pypkg
+import time
 
 VERSION = 'v1.3 (09.03.2017)'
 MACROFILE = '~/.exec/macro.cfg'
@@ -106,7 +107,8 @@ def main():
 
     print = set_logfile(sys.argv[0])
 
-    print('Version:' + pypkg.__version__)
+    print('Time: ' + time.strftime('%d.%m.%Y %H:%M:%S'))
+    print('Version: ' + pypkg.__version__)
     print('Name of the script: ' + sys.argv[0])
     print('Number of arguments: ' + str(len(sys.argv)))
     print('The arguments are: '  + str(sys.argv))
