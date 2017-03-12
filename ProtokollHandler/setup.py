@@ -34,5 +34,6 @@ setup(
     # The project's main homepage.
     url='https://github.com/Eng1958/NNNNNN',
     packages = ['pypkg'],
-    py_modules = ["exec"] 
+    py_modules = ["exec"], 
+    data_files = [('doc', ['README.me'])]
     )
