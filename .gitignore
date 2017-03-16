@@ -7,6 +7,7 @@ ProtokollHandler/test.sh
 
 # Can also ignore all directories and files in a directory.
 tmp/**/* 
+dist
 
 ### Python ###
 *.py[cod]
