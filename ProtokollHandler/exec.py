@@ -30,8 +30,8 @@ import re
 import subprocess
 import tkinter as tk
 from tkinter import messagebox
-import pypkg
 import time
+import pypkg
 
 VERSION = 'v1.3 (09.03.2017)'
 MACROFILE = '~/.exec/macro.cfg'
@@ -60,13 +60,13 @@ def read_macro_configuration():
     macro_dict = {}
 
     try:
-        mf = open(macrofile, 'r')
+        mf_obj = open(macrofile, 'r')
     except IOError:
         print('Macro-Configuration ' + macrofile + ' doesn\'t exist')
     else:
         print('Read content of Macro-Configuration ' + macrofile)
-        content = mf.read().splitlines()
-        mf.close()
+        content = mf_obj.read().splitlines()
+        mf_obj.close()
 
         for line in content:
             if not line.startswith('#'):
@@ -94,7 +94,7 @@ def substitute_macro(file, macro_dict):
 
 def error_message(message):
     """
-
+        Show error message in a message box
     """
 
     print(message)
